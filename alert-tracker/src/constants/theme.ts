@@ -43,12 +43,17 @@ const color = {
   greenLighter: '#81c784',
   greenLightest: '#a5d6a7',
 
+  
+};
+
+const status = {
   error: '#e57373',
   warning: '#ffb74d',
   info: '#64b5f6',
   success: '#81c784',
-};
+}
 
 export const theme = {
-  color
+  color,
+  status,
 };

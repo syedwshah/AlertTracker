@@ -3,7 +3,16 @@ import { ThemeProvider } from '@material-ui/core/styles';
 
 import {theme} from './constants/theme'
 
-function App() {
+const App = () => {
+  const [isReady, setIsReady] = React.useState<boolean>(false)
+
+  React.useEffect(() => {
+    //connect to server
+
+    //make ready
+    setIsReady(true)
+  }, [])
+
   return (
     <ThemeProvider theme={theme}>
     </ThemeProvider>
