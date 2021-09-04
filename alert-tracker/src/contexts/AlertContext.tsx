@@ -1,17 +1,38 @@
-import React, {PropsWithChildren} from 'react';
+import React, { createContext, useReducer} from 'react';
 
+import { AlertActions, CounterActions, alertReducer, counterReducer } from '../reducers/alertManager';
 import { Alert } from '../types/alerts';
 
-interface AlertContextType {
-  alerts: Alert[]
+
+type InitialStateType = {
+  alerts: Alert[],
+  counter: number
 }
 
-export const AlertContext = React.createContext<AlertContextType>({
-  alerts: []
-})
+const initialState = {
+  alerts: [],
+  counter: 0
+}
 
-export const AlertContextProvider: React.FC = (props: PropsWithChildren<{}>) => {
-  // const [alerts, setAlerts] = React.useState<Alert[]>([]);
+export const AlertContext = createContext<{
+  state: InitialStateType;
+  dispatch: React.Dispatch<any>
+}>({
+  state: initialState,
+  dispatch: () => null
+});
 
+const mainReducer = ({alerts, counter}: InitialStateType, action: AlertActions | CounterActions) => ({
+  alerts: alertReducer(alerts, action),
+  counter: counterReducer(counter, action)
+});
 
+export const AlertProvider: React.FC = ({ children }) => {
+  const [state, dispatch] = useReducer(mainReducer, initialState);
+  
+  return (
+    <AlertContext.Provider value={{state, dispatch}}>
+      {children}
+    </AlertContext.Provider>
+  )
 }

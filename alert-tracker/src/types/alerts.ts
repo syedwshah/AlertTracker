@@ -1,4 +1,4 @@
-export enum AlertEnum {
+export enum AlertTypes {
   Error = "error",
   Warning = "warning",
   Info = "info",
@@ -6,10 +6,10 @@ export enum AlertEnum {
 }
 
 export interface Alert {
-  uid?: string,
+  id: number;
   timeLimit: number,
   text: string,
   link: string,
-  alertType: AlertEnum,
+  alertType: AlertTypes,
   alertTitle: string
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 
+import { AlertProvider } from './contexts/AlertContext';
 import {theme} from './constants/theme'
 
 const App = () => {
@@ -15,6 +16,9 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      <AlertProvider>
+        hi
+      </AlertProvider>
     </ThemeProvider>
   );
 }
