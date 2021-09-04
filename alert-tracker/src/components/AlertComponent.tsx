@@ -1,7 +1,26 @@
-import React from 'react';
-import { Alert} from '../types/alerts';
+import React, { useRef, useState, useEffect} from 'react';
+import { Alert } from '../types/alerts';
 
-const AlertComponent: React.FC<{alert: Alert}> = ({alert}) => {
+const AlertComponent: React.FC<{alert: Alert; deleteAlert: Function}> = ({alert, deleteAlert}) => {
+  const intervalRef = useRef<NodeJS.Timeout>();
+  const [count, setCount] = useState(alert.timeLimit)
+
+  useEffect(() => {
+    intervalRef.current = setInterval(
+      () => {
+        setCount((count) => count - 1);
+        if (count === 1) {
+          deleteAlert(alert.id);
+        }
+      },
+      1000
+    )
+
+    return () => {
+      clearInterval(intervalRef.current as NodeJS.Timeout)
+    }
+  }, [alert.id, count, deleteAlert])
+
   return (
     <> 
       {alert.link !== "" ?
@@ -11,11 +30,13 @@ const AlertComponent: React.FC<{alert: Alert}> = ({alert}) => {
       :
       <h1>{alert.alertTitle}</h1>}
       
-      <p>{alert.timeLimit}</p>
+      <p>{count}</p>
       <p>{alert.text}</p>
       <p>{alert.link}</p>
       
       <p>{alert.alertType}</p>
+
+      <button onClick={() => deleteAlert(alert.id)}>delete</button>
     </>
   )
 }

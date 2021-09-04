@@ -107,8 +107,7 @@ const AlertExample = () => {
           <div style={{marginTop: 20}}>
             {state.alerts.map(alert => (
               <div key={alert.id}>
-                <AlertComponent alert={alert}/>
-                <button onClick={() => deleteAlert(alert.id)}>delete</button>
+                <AlertComponent alert={alert} deleteAlert={deleteAlert} />
               </div>
             ))}
           </div>
