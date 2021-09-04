@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import { AlertContext } from '../contexts/AlertContext';
 import { Types } from '../reducers/alertManager';
+import AlertComponent from './AlertComponent';
 
-const Alerts = () => {
+const AlertExample = () => {
   const [form, setForm] = React.useState({
     timeLimit: 10,
     text: "",
@@ -105,12 +106,8 @@ const Alerts = () => {
 
           <div style={{marginTop: 20}}>
             {state.alerts.map(alert => (
-              <div>
-                <h1>{alert.alertTitle}</h1>
-                <p>{alert.timeLimit}</p>
-                <p>{alert.text}</p>
-                <p>{alert.link}</p>
-                <p>{alert.alertType}</p>
+              <div key={alert.id}>
+                <AlertComponent alert={alert}/>
                 <button onClick={() => deleteAlert(alert.id)}>delete</button>
               </div>
             ))}
@@ -120,4 +117,4 @@ const Alerts = () => {
   )
 }
 
-export default Alerts
+export default AlertExample
