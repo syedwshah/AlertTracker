@@ -1,10 +1,10 @@
-import { Alert, AlertEnum } from "../types/alerts";
+import { Alert, AlertTypes } from "../types/alerts";
 
 export class AlertModel {
   public timeLimit: number;
   public text: string;
   public link: string;
-  public alertType: AlertEnum;
+  public alertType: AlertTypes;
   public alertTitle: string;
 
 
