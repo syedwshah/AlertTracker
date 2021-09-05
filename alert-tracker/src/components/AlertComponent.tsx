@@ -22,21 +22,20 @@ const AlertComponent: React.FC<{alert: Alert; deleteAlert: Function}> = ({alert,
   }, [alert.id, count, deleteAlert])
 
   return (
-    <> 
+    <>
       {alert.link !== "" ?
-      <a href={alert.link} target="_blank" rel="noopener noreferrer">
+        <a href={alert.link} target="_blank" rel="noopener noreferrer">
+          <h1>{alert.alertTitle}</h1>
+        </a> 
+        :
         <h1>{alert.alertTitle}</h1>
-      </a> 
-      :
-      <h1>{alert.alertTitle}</h1>}
-      
+      }
       <p>{count}</p>
       <p>{alert.text}</p>
-      <p>{alert.link}</p>
       
       <p>{alert.alertType}</p>
 
-      <button onClick={() => deleteAlert(alert.id)}>delete</button>
+      <button onClick={() => deleteAlert(alert.id)}>Dismiss</button>
     </>
   )
 }

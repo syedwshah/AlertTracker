@@ -24,7 +24,6 @@ const AlertExample = () => {
     dispatch({
       type: Types.Create,
       payload: {
-        id: Math.round(Math.random() * 10000),
         timeLimit: form.timeLimit,
         text: form.text,
         link: form.link,

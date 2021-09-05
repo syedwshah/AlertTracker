@@ -1,4 +1,5 @@
 import { Alert } from "../types/alerts";
+import { Guid } from "../utils/guid";
 
 //Mapped Type: Map the Types enum to assosciated payload shape 
 type ActionMap<M extends { [index: string]: any }> = {
@@ -22,7 +23,7 @@ export enum Types {
 type AlertPayload = {
   [Types.Create]: Alert;
   [Types.Delete]: {
-    id: number
+    id: string
   }
 }
 
@@ -30,11 +31,11 @@ export type AlertActions = ActionMap<AlertPayload>[keyof ActionMap<AlertPayload>
 
 export const alertReducer = (state: Alert[], action: AlertActions | CounterActions) => {
   switch (action.type) {
-    case Types.Create: 
+    case Types.Create:
      return [
        ...state,
        {
-         id: action.payload.id,
+         id: action.payload.id ?? Guid.newGuid(),
          timeLimit: action.payload.timeLimit,
          link: action.payload.link,
          text: action.payload.text,

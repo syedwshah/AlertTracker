@@ -3,7 +3,6 @@ import React, { createContext, useReducer} from 'react';
 import { AlertActions, CounterActions, alertReducer, counterReducer } from '../reducers/alertManager';
 import { Alert } from '../types/alerts';
 
-
 type InitialStateType = {
   alerts: Alert[],
   counter: number

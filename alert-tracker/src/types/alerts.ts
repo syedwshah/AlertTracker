@@ -6,7 +6,7 @@ export enum AlertTypes {
 }
 
 export interface Alert {
-  id: number;
+  id: string;
   timeLimit: number,
   text: string,
   link: string,

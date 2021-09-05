@@ -6,15 +6,6 @@ import AlertExample from "./components/AlertExample";
 import {theme} from './constants/theme'
 
 const App = () => {
-  const [isReady, setIsReady] = React.useState<boolean>(false)
-
-  React.useEffect(() => {
-    //connect to server
-
-    //make ready
-    setIsReady(true)
-  }, [])
-
   return (
     <ThemeProvider theme={theme}>
       <AlertProvider>
