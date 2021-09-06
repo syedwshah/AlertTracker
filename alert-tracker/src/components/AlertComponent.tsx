@@ -1,5 +1,7 @@
 import React, { useRef, useState, useEffect} from 'react';
+
 import { Alert } from '../types/alerts';
+import { theme } from '../constants/theme';
 
 const AlertComponent: React.FC<{alert: Alert; deleteAlert: Function}> = ({alert, deleteAlert}) => {
   const intervalRef = useRef<NodeJS.Timeout>();
@@ -9,7 +11,7 @@ const AlertComponent: React.FC<{alert: Alert; deleteAlert: Function}> = ({alert,
     intervalRef.current = setInterval(
       () => {
         setCount((count) => count - 1);
-        if (count === 1) {
+        if (count <= 1) {
           deleteAlert(alert.id);
         }
       },
@@ -22,21 +24,34 @@ const AlertComponent: React.FC<{alert: Alert; deleteAlert: Function}> = ({alert,
   }, [alert.id, count, deleteAlert])
 
   return (
-    <>
+    <div style={{
+      display: "flex", 
+      width: '300px',
+      backgroundColor: "#FAFAFA",
+      justifyContent: "space-between", 
+      alignItems: "center", 
+      padding: 10,
+      borderBottomStyle: "solid",
+      borderWidth: "1px",
+      borderColor: "black",
+    }}>
+      <button onClick={() => deleteAlert(alert.id)}>X</button>
+
+      <div>
+        
+      </div>
+
       {alert.link !== "" ?
         <a href={alert.link} target="_blank" rel="noopener noreferrer">
-          <h1>{alert.alertTitle}</h1>
+          <p>{alert.alertTitle}</p>
         </a> 
         :
-        <h1>{alert.alertTitle}</h1>
+        <p>{alert.alertTitle}</p>
       }
-      <p>{count}</p>
       <p>{alert.text}</p>
-      
-      <p>{alert.alertType}</p>
-
-      <button onClick={() => deleteAlert(alert.id)}>Dismiss</button>
-    </>
+      <p style={{color: theme.palette[alert.alertType].main}}>{alert.alertType}</p>
+      <p>{count}</p>
+    </div>
   )
 }
 
