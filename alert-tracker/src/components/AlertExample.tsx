@@ -100,7 +100,7 @@ const AlertExample = () => {
       <div>
         <h3>Alerts ever created: {state.counter}</h3>
         <div>
-            <p>Alert Title:</p>
+            <p>Alert Title</p>
             <input
               value={form.alertTitle}
               onChange={e => {
@@ -109,7 +109,7 @@ const AlertExample = () => {
               placeholder="Alert Title"
             />
 
-            <p>Time Limit:</p>
+            <p>Time Limit</p>
             <input
               type="number"
               value={form.timeLimit}
@@ -119,7 +119,7 @@ const AlertExample = () => {
               placeholder="Time Limit (seconds)"
             />
 
-            <p>Text:</p>
+            <p>Text</p>
             <input
               value={form.text}
               onChange={e => {
@@ -128,7 +128,7 @@ const AlertExample = () => {
               placeholder="Text"
             />
 
-            <p>Link:</p>
+            <p>Link</p>
             <input
               type="url"
               value={form.link}
@@ -138,7 +138,7 @@ const AlertExample = () => {
               placeholder="url"
             />
 
-            <p>Alert Type:</p>
+            <p>Alert Type</p>
             <select value={form.alertType} onChange={e => {
                 handleForm("alertType", e.target.value)
               }}>
@@ -152,19 +152,19 @@ const AlertExample = () => {
         </div>
       </div>
 
-      <div>
+      <div style={{flex: .3}}>
         {state.alerts.map(alert => {
           const alertValidation = validateAlert(alert)
           if (alertValidation === "valid") {
             return (
-              <div key={alert.id} id={alert.id}>
+              <div key={alert.id} id={alert.id} >
                 <AlertComponent alert={alert} deleteAlert={deleteAlert} />
               </div>
             )
           }
           else {
             return (
-              <div key={alert.id} id={alert.id}>
+              <div key={alert.id} id={alert.id} style={{flex: .3}}>
                 <InvalidAlert alertId={alert.id} deleteAlert={deleteAlert} errorAt={alertValidation} />
               </div>
             )

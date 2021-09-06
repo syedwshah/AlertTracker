@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect} from 'react';
+import { theme } from '../constants/theme';
 
 const InvalidAlert: React.FC<{alertId: string; deleteAlert: Function, errorAt: string}> = ({alertId, deleteAlert, errorAt}) => {
   const intervalRef = useRef<NodeJS.Timeout>();
@@ -23,7 +24,6 @@ const InvalidAlert: React.FC<{alertId: string; deleteAlert: Function, errorAt: s
   return (
     <div style={{
       display: "flex", 
-      width: '300px',
       backgroundColor: "#FAFAFA",
       justifyContent: "space-between", 
       alignItems: "center", 
@@ -32,7 +32,7 @@ const InvalidAlert: React.FC<{alertId: string; deleteAlert: Function, errorAt: s
       borderWidth: "1px",
       borderColor: "black",
     }}>
-      <p>{errorAt}</p>
+      <p style={{color: theme.palette.error.main}}>error: {errorAt}</p>
       <p>{count}</p>
     </div>
   )

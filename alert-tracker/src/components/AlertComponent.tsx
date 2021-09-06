@@ -26,7 +26,6 @@ const AlertComponent: React.FC<{alert: Alert; deleteAlert: Function}> = ({alert,
   return (
     <div style={{
       display: "flex", 
-      width: '300px',
       backgroundColor: "#FAFAFA",
       justifyContent: "space-between", 
       alignItems: "center", 
@@ -36,10 +35,6 @@ const AlertComponent: React.FC<{alert: Alert; deleteAlert: Function}> = ({alert,
       borderColor: "black",
     }}>
       <button onClick={() => deleteAlert(alert.id)}>X</button>
-
-      <div>
-        
-      </div>
 
       {alert.link !== "" ?
         <a href={alert.link} target="_blank" rel="noopener noreferrer">
